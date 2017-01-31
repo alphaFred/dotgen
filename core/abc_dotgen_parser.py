@@ -3,14 +3,18 @@ import ast
 
 
 class AbcDotGenBaseParser(abc.ABC, ast.NodeVisitor):
+    """
+    ABC for parsing an AST.
+    """
     def __init__(self, node_formatter=None, node_labeler=None):
         """
-
+        Initialize node parser and inject formatter and labeler
         Args:
-            node_labeler ():
+            node_labeler: node visitor implementing |AbcDotLabeler|
+            node_formatter: node visitor implementing [AbcDotFormatter]
         """
         super(AbcDotGenBaseParser, self).__init__()
-        self.labeler = node_labeler.label()
+        self.labeler = node_labeler
         self.formatter = node_formatter
 
     @abc.abstractmethod
